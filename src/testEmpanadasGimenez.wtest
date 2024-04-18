@@ -1,0 +1,40 @@
+import example.*
+test "galvan suma una deuda de 40mil" {
+	galvan.gastar(40000)
+	assert.equals(40000 , galvan.totalDeuda())
+	assert.equals(0 , galvan.totalDinero())
+}
+
+test "galvan aumenta su deuda a 120mil"{
+	galvan.gastar(40000)
+	galvan.gastar(80000)
+	assert.equals(120000 , galvan.totalDeuda())
+	assert.equals(0 , galvan.totalDinero())
+}
+
+test "galvan cobra su sueldo y paga su deuda"{
+	galvan.gastar(120000)
+	galvan.cobrarSueldo()
+	galvan.pagarDeuda()
+	assert.equals(0 , galvan.totalDeuda())
+	assert.equals(30000 , galvan.totalDinero())
+}
+
+test" galvan genera una deuda de 220mil"{
+	galvan.gastar(120000)
+	galvan.cobrarSueldo()
+	galvan.gastar(250000)
+	galvan.pagarDeuda()
+	assert.equals(220000 , galvan.totalDeuda())
+	assert.equals(0 , galvan.totalDinero())	
+}
+
+test"galvan queda con una deuda de 7mil"{
+	galvan.gastar(120000)
+	galvan.cobrarSueldo()
+	galvan.gastar(250000)
+	galvan.cobrarSueldo()
+	galvan.pagarDeuda()
+	assert.equals(70000 , galvan.totalDeuda())
+	assert.equals(0 , galvan.totalDinero())
+}
